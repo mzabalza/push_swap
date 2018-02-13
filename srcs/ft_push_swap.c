@@ -27,5 +27,7 @@ int			main(int ac, char **av)
 	bstack = ft_newstack();
 	//ft_show_board(*astack, *bstack);
 	alg_pushpop(astack, bstack);
+	//alg_div_conquer(astack, bstack);
+
 	return (1);
 }

@@ -48,5 +48,6 @@ int					ft_stack_result(t_stack astack, t_stack bstack);
 int					ft_showstr(char *str);
 int					ft_check_dupl(t_node *list);
 char				*alg_pushpop(t_stack *astack, t_stack *bstack);
+int					search_min(t_node *a);
 
 #endif
