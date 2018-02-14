@@ -90,7 +90,6 @@ int	ft_select_order(char *order, t_stack *astack, t_stack *bstack)
 	}
 	else
 		return (0);
-	ft_show_board(*astack, *bstack);
 	return (1);
 
 }

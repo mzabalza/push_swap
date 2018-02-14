@@ -126,6 +126,7 @@ void		exec_orders(int *orders, t_stack *a, t_stack *b)
 		}
 		if (orders[i] == 5)
 		{
+			ft_putchar('z');
 			ft_ra(a);
 			ft_ra(b);
 			ft_putstr("rr\n");
@@ -166,60 +167,42 @@ void		special_case(t_stack *a, t_stack *b)
 
 	orders = ft_memalloc(16);
 	ft_distribute(a, b);
-	ft_show_board(*a, *b);
 	i = 0;
 	while (i < 2)
 	{
 		orders[i] = ft_order(a);
 		i++;
 	}
-	ft_show_board(*a, *b);
-	
 	i = 2;
 	while (i < 4)
 	{
 		orders[i] = ft_xorder(b);
 		i++;
 	}
-	ft_putnbr(orders[0]);
-	ft_putnbr(orders[1]);
 	ft_retrack(orders, a);
 	ft_retrack(&orders[2], b);
-
 	if (orders[0] && orders[0] == orders[2])
 	{
 		orders[0] = orders[0] + 3;
 		orders[2] = 0;
 	}
-	if (orders[0] && orders[0] == orders[3])
+	else if (orders[0] && orders[0] == orders[3])
 	{
 		orders[0] = 0;
 		orders[3] = orders[3] + 3;
 	}
 	if (orders [1] && orders[1] == orders[2])
 	{
-		orders[0] = orders[0] + 3;
-		orders[3] = 0;
+		orders[1] = orders[1] + 3;
+		orders[2] = 0;
 	}
-	if (orders [1] && orders[1] == orders[3])
+	else if (orders [1] && orders[1] == orders[3])
 	{
-		orders[0] = 0;
+		orders[1] = 0;
 		orders[3] = orders[3] + 3;
 	}
-
 	exec_orders(orders, a, b);
 	exec_orders(&orders[2], b, a);
-	ft_show_board(*a, *b);
 }
-
-
-
-
-
-
-
-
-
-
 
 

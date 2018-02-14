@@ -121,16 +121,13 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 
 	orders = ft_memalloc(8);
 	dst = NULL;
-	if (is_ordered(a->first))
+	if (is_ordered(a->first) || is_rordered(a->first, a))
 	{
 		ft_show_board(*a, *b);
 		return (dst);
 	}
 	if (a->nbval < 7 && a->nbval > 3)
-	{
 		special_case(a, b);
-		return (dst);
-	}
 	while (a->nbval > 3)
 		ft_move_tomin(a, b, search_min(a->first));
 	ft_three_order(a);
@@ -139,5 +136,6 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 		ft_pa(b, a);
 		ft_putstr("pa\n");
 	}
+	ft_show_board(*a, *b);
 	return (dst);
 }
