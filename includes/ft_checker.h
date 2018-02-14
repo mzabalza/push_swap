@@ -55,6 +55,9 @@ int					ft_check_dupl(t_node *list);
 int					search_max(t_node *list);
 int					search_min(t_node *list);
 
+
+int					ft_order(t_stack *a);
+void				exec_orders(int *orders, t_stack *a, t_stack *b);
 /*
 ** Sorting Algorithms
 */

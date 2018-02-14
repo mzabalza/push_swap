@@ -84,10 +84,42 @@ static void	ft_move_tomin(t_stack *a, t_stack *b, int dst)
 	ft_pa(a, b);
 	ft_putstr("pb\n");
 }
+
+static void		ft_three_order(t_stack *a)
+{
+	if (is_ordered(a->first))
+		return ;
+	if (a->nbval == 2)
+	{
+		ft_sa(a);
+		ft_putstr("sa\n");
+	}
+	else if (search_max(a->first) + 1 == a->nbval)
+	{
+		ft_sa(a);
+		ft_putstr("sa\n");
+
+	}
+	else if (search_max(a->first) == 0)
+	{
+		ft_ra(a);
+		ft_putstr("ra\n");
+		ft_three_order(a);
+	}
+	else
+	{
+		ft_rra(a);
+		ft_putstr("rra\n");
+		ft_three_order(a);
+	}
+}
+
 char		*alg_pushpop(t_stack *a, t_stack *b)
 {
 	char *dst;
+	int *orders;
 
+	orders = ft_memalloc(8);
 	dst = NULL;
 	if (is_ordered(a->first))
 	{
@@ -99,8 +131,9 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 		special_case(a, b);
 		return (dst);
 	}
-	while ((a->first)->next)
+	while (a->nbval > 3)
 		ft_move_tomin(a, b, search_min(a->first));
+	ft_three_order(a);
 	while (b->first)
 	{
 		ft_pa(b, a);
@@ -108,32 +141,3 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 	}
 	return (dst);
 }
-
-
-
-/*
-	while ((a->first))
-	{
-		if (!b->first)
-		{
-			ft_pa(a, b);
-			ft_putstr("pb\n");
-			//ft_show_board(*a, *b);
-		}
-		if ((a->first)->value > (b->first)->value)
-		{
-			ft_pa(a, b);
-			ft_putstr("pb\n");
-			//ft_show_board(*a, *b);
-		}
-		else 
-		{
-			ft_pa(b, a);
-			ft_putstr("pa\n");
-			//ft_show_board(*a, *b);
-			ft_sa(a);
-			ft_putstr("sa\n");
-			//ft_show_board(*a, *b);
-		}
-	}
-	*/
