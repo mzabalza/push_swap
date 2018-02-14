@@ -33,7 +33,11 @@ PS_SRC = srcs/ft_push_swap.c\
 		srcs/ft_stack_ops.c\
 		srcs/ft_stack_result.c\
 		algos/alg_pushpop.c\
+		algos/special_case.c\
+		algos/is_ordered.c\
 		srcs/ft_select_order.c\
+		srcs/find_mid.c
+		
 
 
 OBJ		= $(patsubst srcs/%.c,./%.o,$(SRC))

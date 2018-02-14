@@ -47,7 +47,23 @@ void				ft_push(int value, t_stack *stack);
 int					ft_stack_result(t_stack astack, t_stack bstack);
 int					ft_showstr(char *str);
 int					ft_check_dupl(t_node *list);
+
+/*
+** Hacer un vim de searchs
+*/
+
+int					search_max(t_node *list);
+int					search_min(t_node *list);
+
+/*
+** Sorting Algorithms
+*/
+
 char				*alg_pushpop(t_stack *astack, t_stack *bstack);
 int					search_min(t_node *a);
+int					find_mid(t_node *list, int nbval);
+void				special_case(t_stack *a, t_stack *b);
+int					is_ordered(t_node *list);
+int					is_xordered(t_node *list);
 
 #endif

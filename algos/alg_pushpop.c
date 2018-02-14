@@ -29,12 +29,32 @@ int		search_min(t_node *list)
 			tmp = list->value;
 			dst = i;
 		}
-		//ft_putnbr(i);
 		i++;
 		list = list->next;
 	}
-	//ft_putnbr(dst);
-	
+	return (dst);
+}
+
+int		search_max(t_node *list)
+{
+	int i;
+	int tmp;
+	int dst;
+
+	i = 0;
+	dst = i;
+	tmp = list->value;
+	while (list)
+	{
+		
+		if (list->value > tmp)
+		{
+			tmp = list->value;
+			dst = i;
+		}
+		i++;
+		list = list->next;
+	}
 	return (dst);
 }
 
@@ -67,15 +87,31 @@ static void	ft_move_tomin(t_stack *a, t_stack *b, int dst)
 char		*alg_pushpop(t_stack *a, t_stack *b)
 {
 	char *dst;
-	int minpos;
 
 	dst = NULL;
-	while ((a->first)->next)
+	if (is_ordered(a->first))
 	{
-		minpos = search_min(a->first);
-		ft_move_tomin(a, b, minpos);
+		ft_show_board(*a, *b);
+		return (dst);
 	}
-	/*
+	if (a->nbval < 7 && a->nbval > 3)
+	{
+		special_case(a, b);
+		return (dst);
+	}
+	while ((a->first)->next)
+		ft_move_tomin(a, b, search_min(a->first));
+	while (b->first)
+	{
+		ft_pa(b, a);
+		ft_putstr("pa\n");
+	}
+	return (dst);
+}
+
+
+
+/*
 	while ((a->first))
 	{
 		if (!b->first)
@@ -101,12 +137,3 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 		}
 	}
 	*/
-
-	while (b->first)
-	{
-		ft_pa(b, a);
-		ft_putstr("pa\n");
-	}
-	//ft_show_board(*a, *b);
-	return (dst);
-}
