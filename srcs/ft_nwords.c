@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkinp.c                                      :+:      :+:    :+:   */
+/*   ft_nwords.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/08 23:05:14 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/09 01:30:49 by mzabalza         ###   ########.fr       */
+/*   Created: 2018/02/15 18:07:59 by mzabalza          #+#    #+#             */
+/*   Updated: 2018/02/15 18:08:03 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
 
-int		ft_checknumber(char *str)
+size_t		ft_nwords(char const *s, char c)
 {
-	if (*str == '-' && ft_strlen(str) != 1)
-		str++;
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
+	size_t words;
+	size_t i;
+	size_t len;
 
-int		ft_checkinp(int ac, char **input, int i)
-{
-	intmax_t nb;
-
-	while (i < ac)
+	words = 0;
+	i = 0;
+	len = ft_strlen(s);
+	while (i < len)
 	{
-		if (!ft_checknumber(input[i]))
-			return (0);
-		nb = ft_atointmax(input[i]);
-		if (nb > 2147483647 || nb < -2147483648)
-			return (0);
+		if (s[i] != c && (s[i + 1] == c || s[i + 1] == 0))
+			words++;
 		i++;
 	}
-	return (1);
+	return (words);
 }

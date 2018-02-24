@@ -12,6 +12,11 @@
 
 #include "ft_checker.h"
 
+char		**ft_create_strstack(char *str)
+{
+	return (ft_strsplit(str, ' '));
+}
+
 void		ft_addnode(int value, t_node **top, t_node **bottom)
 {
 	t_node *newlist;
@@ -47,18 +52,18 @@ t_stack		*ft_newstack()
 	return (stack);
 }
 
-t_stack		*ft_create_astack(int ac, char **input)
+t_stack		*ft_create_astack(int ac, char **input, int i)
 {
 	t_stack	*astack;
-	int		i;
+	int 	j;
 
+	j = i;
 	astack = ft_newstack();
-	i = 1;
 	while (i < ac)
 	{
 		ft_addnode(ft_atoi(input[i]), &(astack->first), &(astack->last));
 		i++;
 	}
-	astack->nbval = i - 1;
+	astack->nbval = i - j;
 	return (astack);
 }

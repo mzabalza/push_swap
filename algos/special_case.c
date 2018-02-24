@@ -96,7 +96,7 @@ int		ft_order(t_stack *a)
 	}
 }
 //me falta ponerle 'b' cuando sea b
-void		exec_orders(int *orders, t_stack *a, t_stack *b)
+void		exec_orders(int *orders, t_stack *a, t_stack *b, char c)
 {
 	int i;
 
@@ -106,17 +106,23 @@ void		exec_orders(int *orders, t_stack *a, t_stack *b)
 		if (orders[i] == 1)
 		{
 			ft_sa(a);
-			ft_putstr("sa\n");
+			ft_putchar('s');
+			ft_putchar(c);
+			ft_putchar('\n');
 		}
 		if (orders[i] == 2)
 		{
 			ft_ra(a);
-			ft_putstr("ra\n");
+			ft_putchar('r');
+			ft_putchar(c);
+			ft_putchar('\n');
 		}
 		if (orders[i] == 3)
 		{
 			ft_rra(a);
-			ft_putstr("rra\n");
+			ft_putstr("rr");
+			ft_putchar(c);
+			ft_putchar('\n');
 		}
 		if (orders[i] == 4)
 		{
@@ -201,8 +207,8 @@ void		special_case(t_stack *a, t_stack *b)
 		orders[1] = 0;
 		orders[3] = orders[3] + 3;
 	}
-	exec_orders(orders, a, b);
-	exec_orders(&orders[2], b, a);
+	exec_orders(orders, a, b, 'a');
+	exec_orders(&orders[2], b, a, 'b');
 }
 
 

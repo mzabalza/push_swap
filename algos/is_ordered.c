@@ -45,13 +45,16 @@ int		is_rordered(t_node *list, t_stack *a)
 	int i;
 	t_node *tmp;
 
+
 	tmp = list;
 	j = search_min(list);
 	i = 0;
 	while (i + 1 < j)
 	{
 		if (list->value > (list->next)->value)
+		{
 			return (0);
+		}
 		list = list->next;
 		i++;
 	}
@@ -59,7 +62,9 @@ int		is_rordered(t_node *list, t_stack *a)
 	while (list->next)
 	{
 		if (list->value > (list->next)->value)
+		{
 			return (0);
+		}
 		list = list->next;
 	}
 	ft_move_tomin(a, search_min(a->first));

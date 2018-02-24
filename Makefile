@@ -25,6 +25,11 @@ CH_SRC = srcs/checker.c\
 		srcs/get_next_line.c\
 		srcs/ft_stack_ops.c\
 		srcs/ft_stack_result.c\
+		srcs/ft_nwords.c\
+		algos/is_ordered.c\
+		algos/special_case.c\
+		srcs/find_mid.c\
+		algos/alg_pushpop.c
 
 PS_SRC = srcs/ft_push_swap.c\
 		srcs/ft_checkinp.c\
@@ -36,7 +41,8 @@ PS_SRC = srcs/ft_push_swap.c\
 		algos/special_case.c\
 		algos/is_ordered.c\
 		srcs/ft_select_order.c\
-		srcs/find_mid.c
+		srcs/find_mid.c\
+		srcs/ft_nwords.c
 		
 
 
