@@ -46,7 +46,8 @@ int				main(int ac, char **av)
 		return (ft_showError());
 	astack = ft_create_astack(ac, av, ac_one);
 	bstack = ft_newstack();
-	ft_putstr("antes");	ft_show_board(*astack, *bstack);
+	//ft_putstr("antes");	
+	//ft_show_board(*astack, *bstack);
 	ft_putstr("\n");
 	if (is_ordered(astack->first))
 	{
@@ -71,9 +72,10 @@ int				main(int ac, char **av)
 			ft_putstr("\n");
 			return (ft_showError());
 		}
+		//ft_show_board(*astack, *bstack);
 	}
-	ft_putstr("despues");
-	ft_show_board(*astack, *bstack);
+	//ft_putstr("despues");
+	//ft_show_board(*astack, *bstack);
 	ft_stack_result(*astack, *bstack);
 	return (1);
 }

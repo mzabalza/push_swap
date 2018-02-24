@@ -21,7 +21,7 @@ int				ft_showstr(char *str)
 	return (1);
 }
 
-int		ft_showError()
+int				ft_showError()
 {
 	ft_putstr("Error");
 	ft_putchar('\n');
@@ -34,7 +34,7 @@ static void		ft_printpad(int pad)
 		ft_putchar(' ');
 }
 
-void		ft_show_board(t_stack astack, t_stack bstack)
+void			ft_show_board(t_stack astack, t_stack bstack)
 {
 	int pad;
 
@@ -65,7 +65,7 @@ void		ft_show_board(t_stack astack, t_stack bstack)
 }
 
 //esto lo uso en algun lado???
-void	ft_show_stack(t_node *top)
+void			ft_show_stack(t_node *top)
 {
 	while (top)
 	{

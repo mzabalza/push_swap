@@ -125,8 +125,10 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 	if (is_ordered(a->first) || is_rordered(a->first, a))
 	{
 		//ft_show_board(*a, *b);
+		//ft_putchar('z');
 		return (dst);
 	}
+	//ft_putchar('z');
 	if (a->nbval < 7 && a->nbval > 3)
 		special_case(a, b);
 	while (a->nbval > 3)

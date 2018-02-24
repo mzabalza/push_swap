@@ -132,7 +132,6 @@ void		exec_orders(int *orders, t_stack *a, t_stack *b, char c)
 		}
 		if (orders[i] == 5)
 		{
-			ft_putchar('z');
 			ft_ra(a);
 			ft_ra(b);
 			ft_putstr("rr\n");
