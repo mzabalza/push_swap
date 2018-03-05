@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_create_astack.c                              :+:      :+:    :+:   */
+/*   ft_create_astack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -27,10 +27,13 @@ void		ft_addnode(int value, t_node **top, t_node **bottom)
 	{
 		*top = newlist;
 		*bottom = newlist;
+		//
+		newlist->prev = NULL;
 	}
 	else
 	{
 		(*bottom)->next = newlist;
+		newlist->prev = (*bottom);
 		(*bottom) = newlist;
 	}
 	newlist->next = NULL;

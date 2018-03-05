@@ -18,7 +18,8 @@
 typedef struct		s_node
 {
 	int				value;
-	struct s_node	*next;
+	struct 			s_node	*next;
+	struct 			s_node	*prev;
 }					t_node;
 
 typedef struct		s_stack
@@ -28,7 +29,6 @@ typedef struct		s_stack
 	t_node			*last;
 }					t_stack;
 
-	
 int					main(int ac, char **av);
 
 int					ft_select_order(char *order, t_stack *a, t_stack *b);
@@ -49,8 +49,10 @@ t_stack				*ft_create_astack(int ac, char **input, int i);
 char				**ft_create_strstack(char *str);
 t_stack				*ft_newstack();
 void				ft_addnode(int value, t_node **top, t_node **bottom);
+void				ft_delete_node(t_stack *stack, int i);
 void 				ft_pop(t_stack *stack);
 void				ft_push(int value, t_stack *stack);
+
 void				ft_sa(t_stack *stack);
 void				ft_rra(t_stack *stack);
 void				ft_ra(t_stack *stack);
@@ -68,6 +70,7 @@ int					ft_showstr(char *str);
 int					search_max(t_node *list);
 int					search_min(t_node *list);
 int					find_mid(t_node *list, int nbval);
+int					find_closer(t_node *alist, t_stack *cstack, int *margin, int nbval);
 int					ft_order(t_stack *a);
 void				exec_orders(int *orders, t_stack *a, t_stack *b, char c);
 /*
@@ -75,5 +78,12 @@ void				exec_orders(int *orders, t_stack *a, t_stack *b, char c);
 */
 char				*alg_pushpop(t_stack *astack, t_stack *bstack);
 void				special_case(t_stack *a, t_stack *b);
+char				*alg_pushpop2(t_stack *astack, t_stack *bstack);
+t_stack     		*ft_bubble_sort(t_stack *c);
+t_stack     		*ft_quick_sort(t_stack *c);
+/*
+** Alg_pushpop2
+*/
+t_stack				*ft_create_cstack(t_node *a);
 
 #endif

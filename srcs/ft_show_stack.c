@@ -70,7 +70,8 @@ void			ft_show_stack(t_node *top)
 	while (top)
 	{
 		ft_putnbr(top->value);
-		ft_putchar('\n');
+		ft_putchar(' ');
 		top = top->next;
 	}
+	ft_putchar('\n');
 }

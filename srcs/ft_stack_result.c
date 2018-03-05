@@ -48,8 +48,5 @@ int		ft_stack_result(t_stack astack, t_stack bstack)
 		return (ft_showstr("KO"));
 	if (bstack.nbval != 0)
 		return (ft_showstr("KO"));
-
-
 	return (ft_showstr("OK"));
-
 }

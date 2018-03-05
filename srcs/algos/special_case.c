@@ -10,16 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_checker.h"
-
-/*
-** 1 elemento
-** 2 elemento
-** 3 elemento
-** 4 elemento
-** 5 elemento
-*/
 
 static void	ft_distribute(t_stack *a, t_stack *b)
 {

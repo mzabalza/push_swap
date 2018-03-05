@@ -12,28 +12,6 @@
 
 #include "ft_checker.h"
 
-int		search_min(t_node *list)
-{
-	int i;
-	int tmp;
-	int dst;
-
-	i = 0;
-	dst = i;
-	tmp = list->value;
-	while (list)
-	{
-		
-		if (list->value < tmp)
-		{
-			tmp = list->value;
-			dst = i;
-		}
-		i++;
-		list = list->next;
-	}
-	return (dst);
-}
 
 int		search_max(t_node *list)
 {
@@ -121,14 +99,8 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 
 	orders = ft_memalloc(8);
 	dst = NULL;
-	//ojo aqui esta el problem
 	if (is_ordered(a->first) || is_rordered(a->first, a))
-	{
-		//ft_show_board(*a, *b);
-		//ft_putchar('z');
 		return (dst);
-	}
-	//ft_putchar('z');
 	if (a->nbval < 7 && a->nbval > 3)
 		special_case(a, b);
 	while (a->nbval > 3)

@@ -18,8 +18,8 @@ int			main(int ac, char **av)
 	t_stack *bstack;
 	int 	ac_one;
 
-	//if (ac == 1)
-	//	return (0);
+	if (ac == 1)
+		return (0);
 	//if (!ft_checkinp(ac, av))
 	//	return (ft_showError());
 	ac_one = 1;
@@ -38,7 +38,7 @@ int			main(int ac, char **av)
 		return (ft_showError());
 	bstack = ft_newstack();
 	
-	alg_pushpop(astack, bstack);
+	alg_pushpop2(astack, bstack);
 	//alg_div_conquer(astack, bstack);
 	return (1);
 }

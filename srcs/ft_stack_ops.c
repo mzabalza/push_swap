@@ -12,7 +12,44 @@
 
 #include "ft_checker.h"
 
-//Deletes the last inserted element in the stack
+/*
+**Deletes an element of the stack
+*/
+void		ft_delete_node(t_stack *stack, int i)
+{
+	t_node *list;
+
+	//ft_putchar('*');
+	//ft_putnbr(i);
+	//ft_putchar('*');
+	list = stack->first;
+	while (i--)
+	{
+		list = list->next;
+	}
+	if (!list->prev)
+	{
+		(list->next)->prev = list->prev;
+		stack->first = list->next;
+	}
+	else if (!list->next)
+	{
+		///////*****************************************
+		//aqui tendre que cambiar el first last atambien
+		///////*****************************************
+		(list->prev)->next = list->next;
+	}
+	else
+	{
+		(list->prev)->next = list->next;
+		(list->next)->prev = list->prev;
+	}
+	//tengo que hacer free del next y prev??
+	free(list);
+}
+/*
+**Deletes the last inserted element in the stack
+*/
 void 		ft_pop(t_stack *stack)
 {
 	t_node *tmp;
@@ -24,8 +61,9 @@ void 		ft_pop(t_stack *stack)
 	stack->nbval--;
 	free(tmp);
 }
-
-//Interns an element in the stack
+/*
+**Interns an element in the stack
+*/
 void		ft_push(int value, t_stack *stack)
 {
 	t_node *newnode;
