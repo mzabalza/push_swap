@@ -25,6 +25,7 @@ typedef struct		s_node
 typedef struct		s_stack
 {
 	int				nbval;
+	int 			max_margin;
 	t_node			*first;
 	t_node			*last;
 }					t_stack;

@@ -95,14 +95,13 @@ static void		ft_three_order(t_stack *a)
 char		*alg_pushpop2(t_stack *a, t_stack *b)
 {
 	char 	*dst;
-	int 	*orders;
 	t_stack *c;
 	int		margin;
 	int		i;
 	//int		j;
-
-	margin = 30;
-	orders = ft_memalloc(8);
+	//ft_putnbr(a->max_margin);
+	margin = a->max_margin;
+	//orders = ft_memalloc(8);
 	dst = NULL;
 	if (is_ordered(a->first) || is_rordered(a->first, a))
 		return (dst);
@@ -119,7 +118,8 @@ char		*alg_pushpop2(t_stack *a, t_stack *b)
 		//ft_putnbr(margin);
 		//ft_putchar('\n');
 		ft_move_tomin(a, b, i);
-		if (a->nbval <= 3 + 31)
+		//ft_putnbr(a->max_margin);
+		if (a->nbval <= 3 + a->max_margin + 1)
 			margin = 0;
 		//ft_show_board(*a, *b);
 		//j++;

@@ -68,5 +68,6 @@ t_stack		*ft_create_astack(int ac, char **input, int i)
 		i++;
 	}
 	astack->nbval = i - j;
+	astack->max_margin = astack->nbval / 3;
 	return (astack);
 }
