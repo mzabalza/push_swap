@@ -6,11 +6,26 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 20:32:34 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/09 20:32:36 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/14 14:22:41 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
+
+void		ft_freestack(t_stack *stack)
+{
+	t_node *tmp;
+
+	while (stack->first)
+	{
+		tmp = (stack->first)->next;
+		free(stack->first);
+		stack->first = tmp;
+	}
+	stack->first = NULL;
+	stack->last = NULL;
+	free(stack);
+}
 
 char		**ft_create_strstack(char *str)
 {
@@ -27,7 +42,6 @@ void		ft_addnode(int value, t_node **top, t_node **bottom)
 	{
 		*top = newlist;
 		*bottom = newlist;
-		//
 		newlist->prev = NULL;
 	}
 	else
@@ -39,15 +53,13 @@ void		ft_addnode(int value, t_node **top, t_node **bottom)
 	newlist->next = NULL;
 }
 
-t_stack		*ft_newstack()
+t_stack		*ft_newstack(void)
 {
 	t_stack	*stack;
 	t_node	*top;
 	t_node	*bottom;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
-	top = (t_node *)malloc(sizeof(t_node));
-	bottom = (t_node *)malloc(sizeof(t_node));
 	top = NULL;
 	bottom = NULL;
 	stack->first = top;
@@ -58,7 +70,7 @@ t_stack		*ft_newstack()
 t_stack		*ft_create_astack(int ac, char **input, int i)
 {
 	t_stack	*astack;
-	int 	j;
+	int		j;
 
 	j = i;
 	astack = ft_newstack();

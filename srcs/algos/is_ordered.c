@@ -6,13 +6,11 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/14 00:27:37 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/14 00:27:39 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 03:41:48 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
-
-//Comprobar que esta ordenado con r/ra
 
 static void	ft_move_tomin(t_stack *a, int dst)
 {
@@ -39,11 +37,11 @@ static void	ft_move_tomin(t_stack *a, int dst)
 	}
 }
 
-int		is_rordered(t_node *list, t_stack *a)
+int			is_rordered(t_node *list, t_stack *a)
 {
-	int j;
-	int i;
-	t_node *tmp;
+	int		j;
+	int		i;
+	t_node	*tmp;
 
 	tmp = list;
 	j = search_min(list);
@@ -51,9 +49,7 @@ int		is_rordered(t_node *list, t_stack *a)
 	while (i + 1 < j)
 	{
 		if (list->value > (list->next)->value)
-		{
 			return (0);
-		}
 		list = list->next;
 		i++;
 	}
@@ -61,9 +57,7 @@ int		is_rordered(t_node *list, t_stack *a)
 	while (list->next)
 	{
 		if (list->value > (list->next)->value)
-		{
 			return (0);
-		}
 		list = list->next;
 	}
 	if (!(list->value < tmp->value))
@@ -72,7 +66,7 @@ int		is_rordered(t_node *list, t_stack *a)
 	return (1);
 }
 
-int		is_ordered(t_node *list)
+int			is_ordered(t_node *list)
 {
 	while (list->next)
 	{
@@ -83,7 +77,7 @@ int		is_ordered(t_node *list)
 	return (1);
 }
 
-int		is_xordered(t_node *list)
+int			is_xordered(t_node *list)
 {
 	while (list->next)
 	{

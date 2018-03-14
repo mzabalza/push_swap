@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 04:33:29 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/12 04:34:08 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 05:45:56 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int		ft_check_numbers(t_stack stack)
 	}
 	return (1);
 }
-
 
 int		ft_stack_result(t_stack astack, t_stack bstack)
 {

@@ -6,14 +6,13 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 06:20:41 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/12 06:20:42 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 03:59:36 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
 
-
-int		search_max(t_node *list)
+int			search_max(t_node *list)
 {
 	int i;
 	int tmp;
@@ -24,7 +23,6 @@ int		search_max(t_node *list)
 	tmp = list->value;
 	while (list)
 	{
-		
 		if (list->value > tmp)
 		{
 			tmp = list->value;
@@ -63,7 +61,7 @@ static void	ft_move_tomin(t_stack *a, t_stack *b, int dst)
 	ft_putstr("pb\n");
 }
 
-static void		ft_three_order(t_stack *a)
+static void	ft_three_order(t_stack *a)
 {
 	if (is_ordered(a->first))
 		return ;
@@ -76,7 +74,6 @@ static void		ft_three_order(t_stack *a)
 	{
 		ft_sa(a);
 		ft_putstr("sa\n");
-
 	}
 	else if (search_max(a->first) == 0)
 	{
@@ -94,8 +91,8 @@ static void		ft_three_order(t_stack *a)
 
 char		*alg_pushpop(t_stack *a, t_stack *b)
 {
-	char *dst;
-	int *orders;
+	char	*dst;
+	int		*orders;
 
 	orders = ft_memalloc(8);
 	dst = NULL;
@@ -111,6 +108,5 @@ char		*alg_pushpop(t_stack *a, t_stack *b)
 		ft_pa(b, a);
 		ft_putstr("pa\n");
 	}
-	//ft_show_board(*a, *b);
 	return (dst);
 }

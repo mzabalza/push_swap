@@ -6,90 +6,56 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 05:32:20 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/10 05:33:20 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 05:45:44 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
 
-void	ft_rra(t_stack *stack)
+static int	ft_select_order2(char *order, t_stack *a, t_stack *b)
 {
-	t_node *tmp;
-
-	tmp = stack->first;
-	while (tmp->next != stack->last)
-		tmp = tmp->next;
-	tmp->next = NULL;
-	(stack->last)->next = stack->first;
-	stack->first = stack->last;
-	stack->last = tmp;
-}
-
-void	ft_ra(t_stack *stack)
-{
-	t_node *tmp;
-
-	tmp = (stack->first)->next;
-	(stack->first)->next = NULL;
-	(stack->last)->next = (stack->first);
-	(stack->last) = (stack->first);
-	(stack->first) = tmp;
-}
-
-void	ft_sa(t_stack *stack)
-{
-	t_node *tmp;
-
-	tmp = (stack->first)->next;
-	(stack->first)->next = tmp->next;
-	tmp->next = (stack->first);
-	stack->first = tmp;
-}
-
-void	ft_pa(t_stack *popstack, t_stack *pushstack)
-{
-	ft_push((popstack->first)->value, pushstack);
-	ft_pop(popstack);
-}
-
-int	ft_select_order(char *order, t_stack *astack, t_stack *bstack)
-{
-	t_stack *tmp;
-
-	tmp = bstack;
-	if (!ft_strcmp(order, "sa") && astack->nbval > 1)
-		ft_sa(astack);
-	else if (!ft_strcmp(order, "sb") && bstack->nbval > 1)
-		ft_sa(bstack);
-	else if (!ft_strcmp(order, "ss") && astack->nbval > 1 && bstack->nbval > 1)
+	if (!ft_strcmp(order, "rr") && a->nbval > 1 && b->nbval > 1)
 	{
-		ft_sa(astack);
-		ft_sa(bstack);
+		ft_ra(a);
+		ft_ra(b);
 	}
-	else if (!ft_strcmp(order, "pb") && astack->nbval)
-		ft_pa(astack, bstack);
-	else if (!ft_strcmp(order, "pa") && bstack->nbval)
-		ft_pa(bstack, astack);
-	else if (!ft_strcmp(order, "ra") && astack->nbval > 1)
-		ft_ra(astack);
-	else if (!ft_strcmp(order, "rb") && bstack->nbval > 1)
-		ft_ra(bstack);
-	else if (!ft_strcmp(order, "rr") && astack->nbval > 1 && bstack->nbval > 1)
+	else if (!ft_strcmp(order, "rra") && a->nbval > 1)
+		ft_rra(a);
+	else if (!ft_strcmp(order, "rrb") && b->nbval > 1)
+		ft_rra(b);
+	else if (!ft_strcmp(order, "rrr") && a->nbval > 1 && b->nbval > 1)
 	{
-		ft_ra(astack);
-		ft_ra(bstack);
-	}
-	else if (!ft_strcmp(order, "rra") && astack->nbval > 1)
-		ft_rra(astack);
-	else if (!ft_strcmp(order, "rrb") && bstack->nbval > 1)
-		ft_rra(bstack);
-	else if (!ft_strcmp(order, "rrr") && astack->nbval > 1 && bstack->nbval > 1)
-	{
-		ft_rra(astack);
-		ft_rra(bstack);
+		ft_rra(a);
+		ft_rra(b);
 	}
 	else
 		return (0);
 	return (1);
+}
 
+int			ft_select_order(char *order, t_stack *a, t_stack *b)
+{
+	t_stack *tmp;
+
+	tmp = b;
+	if (!ft_strcmp(order, "sa") && a->nbval > 1)
+		ft_sa(a);
+	else if (!ft_strcmp(order, "sb") && b->nbval > 1)
+		ft_sa(b);
+	else if (!ft_strcmp(order, "ss") && a->nbval > 1 && b->nbval > 1)
+	{
+		ft_sa(a);
+		ft_sa(b);
+	}
+	else if (!ft_strcmp(order, "pb") && a->nbval)
+		ft_pa(a, b);
+	else if (!ft_strcmp(order, "pa") && b->nbval)
+		ft_pa(b, a);
+	else if (!ft_strcmp(order, "ra") && a->nbval > 1)
+		ft_ra(a);
+	else if (!ft_strcmp(order, "rb") && b->nbval > 1)
+		ft_ra(b);
+	else
+		return (ft_select_order2(order, a, b));
+	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 21:46:16 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/13 21:46:18 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 05:14:14 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
 
-int		search_min(t_node *list)
+int			search_min(t_node *list)
 {
 	int i;
 	int tmp;
@@ -34,7 +34,7 @@ int		search_min(t_node *list)
 	return (dst);
 }
 
-int		search_value(t_node *list, int val)
+int			search_value(t_node *list, int val)
 {
 	int i;
 
@@ -49,54 +49,35 @@ int		search_value(t_node *list, int val)
 	return (-1);
 }
 
-int		find_closer(t_node *alist, t_stack *cstack, int *margin, int nbval)
+int			find_closer(t_node *alist, t_stack *cstack, int *margin)
 {
-	int dst;
-	int tmp;
-	int	i;
-	int j;
-	t_node *clist;
-	int tmp2;
-
-	tmp2 = 0;
+	int		dst;
+	int		i;
+	int		j;
+	t_node	*clist;
 
 	clist = cstack->first;
 	i = 0;
 	j = 0;
-
-	//dst = search_value(alist, clist->value);
 	dst = clist->value;
-	//ft_putchar('{');
-	//ft_putnbr(dst);
 	while (i < *margin && (clist = clist->next))
 	{
 		i++;
-		tmp = search_value(alist, dst);
-		tmp2 = search_value(alist, clist->value);
-		//if (tmp > nbval / 2)
-		//	tmp = nbval - tmp;
-		//if (tmp2 > nbval / 2)
-		//	tmp2 = nbval - tmp2;
-		//ft_putnbr(tmp);
-		if (tmp2 < tmp)
+		if (search_value(alist, clist->value) < search_value(alist, dst))
 		{
 			j = i;
 			dst = clist->value;
 		}
 	}
-	//ft_putchar('}');
 	if (j)
 		(*margin)--;
 	if (!j || *margin == 0)
 		(*margin) = 2;
 	ft_delete_node(cstack, j);
-	//ft_show_stack(cstack->first);
-	i = nbval;
-	//ft_putnbr(dst);
 	return (search_value(alist, dst));
 }
 
-static int		selection_sort(int *order, int nbval)
+static int	selection_sort(int *order, int nbval)
 {
 	int i;
 	int j;
@@ -123,7 +104,7 @@ static int		selection_sort(int *order, int nbval)
 	return (order[i]);
 }
 
-int				find_mid(t_node *list, int nbval)
+int			find_mid(t_node *list, int nbval)
 {
 	int *order;
 	int i;
@@ -139,5 +120,6 @@ int				find_mid(t_node *list, int nbval)
 	}
 	order[i] = '\0';
 	mid = selection_sort(order, nbval);
+	free(order);
 	return (mid);
 }

@@ -6,13 +6,12 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 06:20:41 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/12 06:20:42 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 04:03:06 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
 
-//llamale move to
 static void	ft_move_tomin(t_stack *a, t_stack *b, int dst)
 {
 	int newdst;
@@ -63,7 +62,7 @@ static void	ft_move_tomax(t_stack *a, t_stack *b, int dst)
 	ft_putstr("pa\n");
 }
 
-static void		ft_three_order(t_stack *a)
+static void	ft_three_order(t_stack *a)
 {
 	if (is_ordered(a->first))
 		return ;
@@ -76,7 +75,6 @@ static void		ft_three_order(t_stack *a)
 	{
 		ft_sa(a);
 		ft_putstr("sa\n");
-
 	}
 	else if (search_max(a->first) == 0)
 	{
@@ -92,49 +90,30 @@ static void		ft_three_order(t_stack *a)
 	}
 }
 
-char		*alg_pushpop2(t_stack *a, t_stack *b)
+int			alg_pushpop2(t_stack *a, t_stack *b)
 {
-	char 	*dst;
 	t_stack *c;
 	int		margin;
 	int		i;
-	//int		j;
-	//ft_putnbr(a->max_margin);
+
 	margin = a->max_margin;
-	//orders = ft_memalloc(8);
-	dst = NULL;
 	if (is_ordered(a->first) || is_rordered(a->first, a))
-		return (dst);
+		return (1);
 	if (a->nbval < 7 && a->nbval > 3)
-		special_case(a, b);
+		if ((special_case(a, b) == 0))
+			return (0);
 	c = ft_create_cstack(a->first);
 	c = ft_bubble_sort(c);
-	//j = 0;
 	while (a->nbval > 3)
 	{
-		i = find_closer(a->first, c, &margin, a->nbval);
-		//ft_putnbr(i);
-		//ft_putchar('|');
-		//ft_putnbr(margin);
-		//ft_putchar('\n');
+		i = find_closer(a->first, c, &margin);
 		ft_move_tomin(a, b, i);
-		//ft_putnbr(a->max_margin);
 		if (a->nbval <= 3 + a->max_margin + 1)
 			margin = 0;
-		//ft_show_board(*a, *b);
-		//j++;
 	}
-	//ft_show_board(*a, *b);
 	ft_three_order(a);
 	while (b->nbval)
-	{
 		ft_move_tomax(b, a, search_max(b->first));
-	}
-	//while (b->first)
-	//{
-	//	ft_pa(b, a);
-	//	ft_putstr("pa\n");
-	//}
-	//ft_show_board(*a, *b);
-	return (dst);
+	ft_freestack(c);
+	return (1);
 }

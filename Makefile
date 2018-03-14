@@ -22,14 +22,17 @@ CH_SRC = srcs/checker.c\
 		srcs/ft_create_astack.c\
 		srcs/ft_show_stack.c\
 		srcs/ft_select_order.c\
+		srcs/ft_orders.c\
 		srcs/get_next_line.c\
 		srcs/ft_stack_ops.c\
 		srcs/ft_stack_result.c\
 		srcs/ft_nwords.c\
 		srcs/algos/is_ordered.c\
 		srcs/algos/special_case.c\
+		srcs/algos/special_case2.c\
 		srcs/find_mid.c\
-		srcs/algos/alg_pushpop.c
+		srcs/algos/alg_pushpop.c\
+		srcs/ft_ex_and_print.c
 
 PS_SRC = srcs/ft_push_swap.c\
 		srcs/ft_checkinp.c\
@@ -40,13 +43,15 @@ PS_SRC = srcs/ft_push_swap.c\
 		srcs/algos/alg_pushpop.c\
 		srcs/algos/alg_pushpop2.c\
 		srcs/algos/special_case.c\
+		srcs/algos/special_case2.c\
 		srcs/algos/is_ordered.c\
-		srcs/sorting/ft_quick_sort.c\
 		srcs/sorting/ft_bubble_sort.c\
 		srcs/ft_select_order.c\
+		srcs/ft_orders.c\
 		srcs/find_mid.c\
 		srcs/ft_nwords.c\
-		srcs/ft_create_cstack.c
+		srcs/ft_create_cstack.c\
+		srcs/ft_ex_and_print.c
 
 OBJ		= $(patsubst srcs/%.c,./%.o,$(SRC))
 

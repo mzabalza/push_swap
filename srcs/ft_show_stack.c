@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 22:58:55 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/02/09 22:58:58 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/07 05:13:24 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				ft_showstr(char *str)
 	return (1);
 }
 
-int				ft_showError()
+int				ft_show_error(void)
 {
 	ft_putstr("Error");
 	ft_putchar('\n');
@@ -38,9 +38,8 @@ void			ft_show_board(t_stack astack, t_stack bstack)
 {
 	int pad;
 
-	ft_putendl("\nSTACK A     ||     STACK B");
-	ft_putendl("-------     ||     -------");
-	while(astack.first || bstack.first)
+	ft_putendl("\nSTACK A     ||     STACK B\n-------     ||     -------");
+	while (astack.first || bstack.first)
 	{
 		pad = 0;
 		if (astack.first)
@@ -64,7 +63,6 @@ void			ft_show_board(t_stack astack, t_stack bstack)
 	ft_putchar('\n');
 }
 
-//esto lo uso en algun lado???
 void			ft_show_stack(t_node *top)
 {
 	while (top)
