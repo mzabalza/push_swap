@@ -55,7 +55,8 @@ PS_SRC = srcs/ft_push_swap.c\
 		srcs/algos/alg_quick.c\
 		srcs/quick_alg/ft_new_group.c\
 		srcs/quick_alg/ft_mv_half_b.c\
-		srcs/quick_alg/ft_solve_3bstack.c
+		srcs/quick_alg/ft_solve_3bstack.c\
+		srcs/quick_alg/ft_solve_3astack.c
 
 OBJ		= $(patsubst srcs/%.c,./%.o,$(SRC))
 

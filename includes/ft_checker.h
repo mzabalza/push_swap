@@ -111,6 +111,7 @@ t_group				*ft_new_group(int nbval, int mid);
 t_group				*ft_add_group(int nbval, int mid, t_group *group);
 t_group				*ft_del_group(t_group *group);
 void				ft_solve_3bstack(t_stack *a, t_stack *b);
+t_group				*ft_solve_3astack(t_stack *a, t_stack *b, t_group *group);
 void				ft_mv_group_b(t_stack *a, t_stack *b, t_group *group);
 
 

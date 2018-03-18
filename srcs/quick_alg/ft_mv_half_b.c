@@ -12,12 +12,26 @@
 
 #include "ft_checker.h"
 
+static int	ft_smallest(t_node *list)
+{
+	int smallest;
+
+	smallest = list->value;
+	list = list->next;
+	while (list)
+	{
+		if (list->value < smallest)
+			smallest = list->value;
+		list = list->next;
+	}
+	return (smallest);
+}
 /*
 **Receives a, b stacks; finds middle value from b; moves half of a to b
 **c is the destiny
 **returns nº values moved
 */
-int		ft_mv_half_a(t_stack *a, t_stack *b)
+int			ft_mv_half_a(t_stack *a, t_stack *b)
 {
 	int 	i;
 	int		mid;
@@ -34,7 +48,7 @@ int		ft_mv_half_a(t_stack *a, t_stack *b)
 		moves++;
 	i = moves;
 	//NO BUSCA EL VALOR SINO LA POSICION. HACER FUNCION QUE ME BUSQUE EL MIN
-	min = search_min(b->first);
+	min = ft_smallest(b->first);
 	while(i)
 	{
 		// ft_putstr("\nfirst: ");
@@ -50,7 +64,7 @@ int		ft_mv_half_a(t_stack *a, t_stack *b)
 				ft_exec_p(b, a, 'a');
 				ft_exec_r(a, b, 'a');
 				moves--;
-				min = search_min(b->first);
+				min = ft_smallest(b->first);
 				ft_show_board(*a, *b);
 			}
 			else
@@ -73,7 +87,7 @@ int		ft_mv_half_a(t_stack *a, t_stack *b)
 **returns nº values moved
 */
 //MEJORA AQUI. EN VEZ DE PASAR TODO PASAR LA MITAD BUENA Y LA OTRA RA, Y CUANDO ACABE RRA (ES MAS CORTO)
-void	ft_mv_group_b(t_stack *a, t_stack *b, t_group *group)
+void		ft_mv_group_b(t_stack *a, t_stack *b, t_group *group)
 {
 	int i;
 	int moves;
@@ -87,7 +101,7 @@ void	ft_mv_group_b(t_stack *a, t_stack *b, t_group *group)
 	}	
 }
 
-int		ft_mv_half_b(t_stack *a, t_stack *b, t_group *group)
+int			ft_mv_half_b(t_stack *a, t_stack *b, t_group *group)
 {
 	int i;
 	int moves;
