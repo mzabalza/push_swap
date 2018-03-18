@@ -30,6 +30,14 @@ typedef struct		s_stack
 	t_node			*last;
 }					t_stack;
 
+typedef struct 		s_group 		
+{
+	int 			nbval;
+	int 			mid;
+	struct s_group	*next;
+	struct s_group	*prev;
+}					t_group;
+
 int					main(int ac, char **av);
 int					ft_select_order(char *order, t_stack *a, t_stack *b);
 int					ft_stack_result(t_stack astack, t_stack bstack);
@@ -58,7 +66,10 @@ void				ft_sa(t_stack *stack);
 void				ft_rra(t_stack *stack);
 void				ft_ra(t_stack *stack);
 void				ft_pa(t_stack *popstack, t_stack *pushstack);
-
+/*
+** Execute order and print it
+*/
+void				ft_exec_p(t_stack *a, t_stack *b, char c);
 void				ft_exec_s(t_stack *a, t_stack *b, char c);
 void				ft_exec_r(t_stack *a, t_stack *b, char c);
 void				ft_exec_rr(t_stack *a, char c);
@@ -89,8 +100,19 @@ int					special_case(t_stack *a, t_stack *b);
 int					alg_pushpop2(t_stack *astack, t_stack *bstack);
 t_stack				*ft_bubble_sort(t_stack *c);
 t_stack				*ft_quick_sort(t_stack *c);
-/*
-** Alg_pushpop2
-*/
 t_stack				*ft_create_cstack(t_node *a);
+/*
+** Alg_quick
+*/
+int					alg_quick(t_stack *a, t_stack *b);
+int					ft_mv_half_b(t_stack *a, t_stack *b, t_group *group);
+int					ft_mv_half_a(t_stack *a, t_stack *b);
+t_group				*ft_new_group(int nbval, int mid);
+t_group				*ft_add_group(int nbval, int mid, t_group *group);
+t_group				*ft_del_group(t_group *group);
+void				ft_solve_3bstack(t_stack *a, t_stack *b);
+void				ft_mv_group_b(t_stack *a, t_stack *b, t_group *group);
+
+
+
 #endif

@@ -12,6 +12,18 @@
 
 #include "ft_checker.h"
 
+/*
+**char c is the destiny 
+*/
+void	ft_exec_p(t_stack *a, t_stack *b, char c)
+{
+	ft_pa(a, b);
+	if (c == 'b')
+		ft_putstr("pb\n");
+	else if (c == 'a')
+		ft_putstr("pa\n");
+}
+
 void	ft_exec_s(t_stack *a, t_stack *b, char c)
 {
 	ft_sa(a);

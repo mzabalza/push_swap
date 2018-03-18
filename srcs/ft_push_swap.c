@@ -18,6 +18,8 @@ int			main(int ac, char **av)
 	t_stack *bstack;
 	int		ac_one;
 
+	//ft_putstr(av[1]);
+	//ft_putstr("\n");
 	if (ac == 1)
 		return (0);
 	ac_one = 1;
@@ -31,7 +33,10 @@ int			main(int ac, char **av)
 	if (!ft_check_dupl(astack->first))
 		return (ft_show_error());
 	bstack = ft_newstack();
-	if (!alg_pushpop2(astack, bstack))
+	//if (!alg_pushpop2(astack, bstack))
+	//	return (0);
+
+	if (!alg_quick(astack, bstack))
 		return (0);
 	ft_freestack(astack);
 	ft_freestack(bstack);

@@ -12,6 +12,9 @@
 
 #include "ft_checker.h"
 
+/*
+**Returns the position of the min value of a list
+*/
 int			search_min(t_node *list)
 {
 	int i;
@@ -103,7 +106,10 @@ static int	selection_sort(int *order, int nbval)
 	i = (nbval / 2);
 	return (order[i]);
 }
-
+/*
+**Receives a list; creates an array with the list values; orders the array
+**Returns middle value
+*/
 int			find_mid(t_node *list, int nbval)
 {
 	int *order;
@@ -112,13 +118,13 @@ int			find_mid(t_node *list, int nbval)
 
 	order = (int *)malloc(sizeof(int) * (nbval));
 	i = 0;
-	while (list)
+	//ojo esto
+	while (i < (nbval))
 	{
 		order[i] = list->value;
 		list = list->next;
 		i++;
 	}
-	order[i] = '\0';
 	mid = selection_sort(order, nbval);
 	free(order);
 	return (mid);
