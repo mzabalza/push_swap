@@ -88,26 +88,56 @@ int				alg_quick(t_stack *a, t_stack *b)
 		// 	ft_putstr("\n");
 		// 	tmp = tmp->prev;
 		// }
-		ordered++;
-		ft_mv_group_b(a, b, group);
-		//ft_show_board(*a, *b);
-		group = ft_del_group(group);
-		while (b->nbval > 3)
+		if (group->nbval == 2)
 		{
-			moves = ft_mv_half_a(a, b);
-			group = ft_add_group(moves, find_mid(a->first, moves), group);
-			//ft_show_board(*a, *b);
-			// ft_putstr("nvbal group: ");
-			// ft_putnbr(group->nbval);
-			// ft_putstr("  mid: ");
-			// ft_putnbr(group->mid);
-			// ft_putstr("\n");
+			if (find_mid(a->first, group->nbval) == (a->first)->value)
+				ft_exec_s(a, b, 'a');
+			ft_exec_r(a, b, 'a');
+			ft_exec_r(a, b, 'a');
+			group = ft_del_group(group);
 		}
-		ft_solve_3bstack(a, b);
+		else
+		{
+			if (group->nbval <= 4)
+			{
+				ft_mv_group_b(a, b, group);
+				group = ft_del_group(group);
+			}
+			else
+			{
+				//ft_show_board(*a, *b);
+				ordered = ft_mv_half_b(a, b, group);
+				//ft_show_board(*a, *b);
+				//HAY QUE ARREGLAR ESTOOO
+				if (group->nbval % 2)
+					(group->nbval)++;
+				group->nbval = (group->nbval/2);
+				//ft_show_board(*a, *b);
+				while (ordered--)
+					ft_exec_rr(a, 'a');
+				group->mid = find_mid(a->first, group->nbval);
+				//ft_show_board(*a, *b);
+			}
+			//ft_mv_group_b(a, b, group);
+			//ft_show_board(*a, *b);
+			//group = ft_del_group(group);
+			while (b->nbval > 3)
+			{
+				moves = ft_mv_half_a(a, b);
+				group = ft_add_group(moves, find_mid(a->first, moves), group);
+				//ft_show_board(*a, *b);
+				// ft_putstr("nvbal group: ");
+				// ft_putnbr(group->nbval);
+				// ft_putstr("  mid: ");
+				// ft_putnbr(group->mid);
+				// ft_putstr("\n");
+			}
+			ft_solve_3bstack(a, b);
+		}
 		// ft_show_board(*a, *b);
 
 	}
-	//ft_show_board(*a, *b);
+	ft_show_board(*a, *b);
 	while (group)
 	{
 		// ft_putstr("nvbal group: ");

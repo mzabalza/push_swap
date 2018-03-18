@@ -22,6 +22,7 @@ int		ft_mv_half_a(t_stack *a, t_stack *b)
 	int 	i;
 	int		mid;
 	int		moves;
+	int		min;
 
 	moves = b->nbval / 2;
 	mid = find_mid(b->first, b->nbval);
@@ -32,6 +33,8 @@ int		ft_mv_half_a(t_stack *a, t_stack *b)
 	if ((b->nbval) % 2)
 		moves++;
 	i = moves;
+	//NO BUSCA EL VALOR SINO LA POSICION. HACER FUNCION QUE ME BUSQUE EL MIN
+	min = search_min(b->first);
 	while(i)
 	{
 		// ft_putstr("\nfirst: ");
@@ -41,9 +44,20 @@ int		ft_mv_half_a(t_stack *a, t_stack *b)
 		// ft_putstr("\n");
 		if ((b->first)->value >= mid)
 		{
+			if ((b->first)->value == min)
+			{
+				ft_show_board(*a, *b);
+				ft_exec_p(b, a, 'a');
+				ft_exec_r(a, b, 'a');
+				moves--;
+				min = search_min(b->first);
+				ft_show_board(*a, *b);
+			}
+			else
+				ft_exec_p(b, a, 'a');
 			i--;
-			ft_exec_p(b, a, 'a');
 			// ft_show_board(*a, *b);
+			
 		}
 		else
 		{
@@ -77,7 +91,9 @@ int		ft_mv_half_b(t_stack *a, t_stack *b, t_group *group)
 {
 	int i;
 	int moves;
+	int j;
 
+	j = 0;
 	moves = (group->nbval) / 2;
 	i = moves;
 	while(i)
@@ -88,7 +104,10 @@ int		ft_mv_half_b(t_stack *a, t_stack *b, t_group *group)
 			ft_exec_p(a, b, 'b');
 		}
 		else
+		{
+			j++;
 			ft_exec_r(a, b, 'a');
+		}
 	}
-	return (moves);
+	return (j);
 }

@@ -72,10 +72,14 @@ void			ft_solve_3bstack(t_stack *a, t_stack *b)
 	//SI HAY UNA SOLA ESTO PUEDE DARME PROBLEMAS
 	//mucho que mejorar el de 3. Siempre con 6 moves me vale
 	int b_tmp;
-	if (b->nbval == 2)
+
+	if (b->nbval == 1)
 	{
-		ft_solve_2bstack(a, b);
+		ft_exec_p(b, a, 'a');
+		ft_exec_r(a, b, 'a');
 	}
+	else if (b->nbval == 2)
+		ft_solve_2bstack(a, b);
 	else
 	{
 		if (search_min(b->first) == 0)
