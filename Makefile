@@ -6,16 +6,19 @@
 #    By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/09 21:09:19 by mzabalza          #+#    #+#              #
-#    Updated: 2018/02/09 21:09:21 by mzabalza         ###   ########.fr        #
+#    Updated: 2018/03/26 13:59:48 by mzabalza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
+#RM = /usr/bin/env rm
 CH_NAME = checker
-
 PS_NAME = push_swap
 
-FLAGS = -Wall -Werror -Wextra
+LIBFT = libft/libft.a
+ 
+CC = clang
+CFLAGS = -Wall -Werror -Wextra -Iincludes
+#-L./libft 
 
 CH_SRC = srcs/checker.c\
 		srcs/ft_checkinp.c\
@@ -33,6 +36,8 @@ CH_SRC = srcs/checker.c\
 		srcs/find_mid.c\
 		srcs/algos/alg_pushpop.c\
 		srcs/ft_ex_and_print.c
+
+CH_OBJ		= $(CH_SRC:.c=.o)
 
 PS_SRC = srcs/ft_push_swap.c\
 		srcs/ft_checkinp.c\
@@ -58,29 +63,34 @@ PS_SRC = srcs/ft_push_swap.c\
 		srcs/quick_alg/ft_solve_3bstack.c\
 		srcs/quick_alg/ft_solve_3astack.c
 
-OBJ		= $(patsubst srcs/%.c,./%.o,$(SRC))
+PS_OBJ		= $(PS_SRC:.c=.o)
 
-all: $(CH_NAME) $(PS_NAME)
+all: $(LIBFT) $(CH_NAME) $(PS_NAME) 
 
-$(CH_NAME):
-		 	@gcc -Wall -Werror -Wextra $(CH_SRC) -L./libft -lft -Iincludes -o $(CH_NAME)
-		 	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Checker is done !"
+$(LIBFT):
+	make -C libft
 
-$(PS_NAME):
-		 	@gcc -Wall -Werror -Wextra $(PS_SRC) -L./libft -lft -Iincludes -o $(PS_NAME)
-		 	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Push_swap is done !"
+$(CH_NAME): $(CH_OBJ)
+	$(CC) $(CFLAGS) $(CH_OBJ) $(LIBFT) -o $(CH_NAME)
+	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Checker is done !"
+
+$(PS_NAME): $(PS_OBJ)
+	$(CC) $(CFLAGS) $(PS_OBJ) $(LIBFT) -o $(PS_NAME)
+	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Push_swap is done !"
 
 
 clean:
-		 	@/bin/rm -rf *.o
-		 	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean"
+	rm -f $(CH_OBJ)
+	rm -f $(PS_OBJ)
+	make -C libft clean
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean"
 
 fclean: clean
-		 	@/bin/rm -rf $(CH_NAME)
-		 	@/bin/rm -rf $(PS_NAME)
-		 	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean"
+	make -C libft fclean
+	rm $(PS_NAME)
+	rm $(CH_NAME)
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean"
 
-re: fclean
-	make
+re: fclean all
 
 .PHONY: clean fclean re all

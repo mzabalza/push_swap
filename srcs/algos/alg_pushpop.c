@@ -12,6 +12,10 @@
 
 #include "ft_checker.h"
 
+/*
+**returns the i position of  the higher value in a list
+*/
+
 int			search_max(t_node *list)
 {
 	int i;

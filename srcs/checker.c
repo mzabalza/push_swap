@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/08 22:57:59 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/14 14:23:36 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/26 11:53:48 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			main(int ac, char **av)
 		av = ft_create_strstack(av[1]);
 		ac_one = 0;
 	}
-	if (!(ft_strcmp(av[1], "-v")))
+	if (ac_one && !(ft_strcmp(av[1], "-v")))
 		ac_one = 2;
 	if (!ft_checkinp(ac, av, ac_one))
 		return (ft_show_error());

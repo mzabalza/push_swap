@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_new_group.c                                  :+:      :+:    :+:   */
+/*   ft_new_group.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 13:04:56 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/16 15:02:35 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/19 22:31:26 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
  **Delete node of the group
- */
+*/
+
 t_group		*ft_del_group(t_group *group)
 {
 	t_group *tmp;
@@ -31,28 +32,34 @@ t_group		*ft_del_group(t_group *group)
 	free(tmp);
 	return (group);
 }
+
 /*
  **Adding nodes to the group
- */
+*/
+
 t_group		*ft_add_group(int nbval, int mid, t_group *group)
 {
 	t_group *newgroup;
 
-	newgroup = (t_group *)malloc(sizeof(t_group));
+	if (!(newgroup = (t_group *)malloc(sizeof(t_group))))
+		exit(1);
 	newgroup->nbval = nbval;
 	newgroup->mid = mid;
 	newgroup->next = NULL;
 	newgroup->prev = group;
 	return (newgroup);
 }
+
 /*
 **First creation of the group
 */
+
 t_group		*ft_new_group(int nbval, int mid)
 {
 	t_group *newgroup;
 
-	newgroup = (t_group *)malloc(sizeof(t_group));
+	if (!(newgroup = (t_group *)malloc(sizeof(t_group))))
+		exit(1);
 	newgroup->nbval = nbval;
 	newgroup->mid = mid;
 	newgroup->next = NULL;

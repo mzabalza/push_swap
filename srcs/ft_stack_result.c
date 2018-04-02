@@ -43,6 +43,8 @@ int		ft_check_numbers(t_stack stack)
 
 int		ft_stack_result(t_stack astack, t_stack bstack)
 {
+	if (!astack.nbval)
+		return (ft_showstr("KO"));
 	if (!ft_check_numbers(astack))
 		return (ft_showstr("KO"));
 	if (bstack.nbval != 0)

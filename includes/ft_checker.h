@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 00:18:06 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/07 03:49:30 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:32:46 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct		s_stack
 	t_node			*last;
 }					t_stack;
 
-typedef struct 		s_group 		
+typedef struct		s_group
 {
-	int 			nbval;
-	int 			mid;
+	int				nbval;
+	int				mid;
 	struct s_group	*next;
 	struct s_group	*prev;
 }					t_group;
@@ -113,7 +113,6 @@ t_group				*ft_del_group(t_group *group);
 void				ft_solve_3bstack(t_stack *a, t_stack *b);
 t_group				*ft_solve_3astack(t_stack *a, t_stack *b, t_group *group);
 void				ft_mv_group_b(t_stack *a, t_stack *b, t_group *group);
-
-
+t_group				*ft_solve_astack(t_stack *a, t_stack *b, t_group *group);
 
 #endif

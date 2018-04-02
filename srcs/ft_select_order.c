@@ -14,16 +14,16 @@
 
 static int	ft_select_order2(char *order, t_stack *a, t_stack *b)
 {
-	if (!ft_strcmp(order, "rr") && a->nbval > 1 && b->nbval > 1)
+	if (!ft_strcmp(order, "rr"))
 	{
 		ft_ra(a);
 		ft_ra(b);
 	}
-	else if (!ft_strcmp(order, "rra") && a->nbval > 1)
+	else if (!ft_strcmp(order, "rra"))
 		ft_rra(a);
-	else if (!ft_strcmp(order, "rrb") && b->nbval > 1)
+	else if (!ft_strcmp(order, "rrb"))
 		ft_rra(b);
-	else if (!ft_strcmp(order, "rrr") && a->nbval > 1 && b->nbval > 1)
+	else if (!ft_strcmp(order, "rrr"))
 	{
 		ft_rra(a);
 		ft_rra(b);
@@ -38,22 +38,22 @@ int			ft_select_order(char *order, t_stack *a, t_stack *b)
 	t_stack *tmp;
 
 	tmp = b;
-	if (!ft_strcmp(order, "sa") && a->nbval > 1)
+	if (!ft_strcmp(order, "sa"))
 		ft_sa(a);
-	else if (!ft_strcmp(order, "sb") && b->nbval > 1)
+	else if (!ft_strcmp(order, "sb"))
 		ft_sa(b);
-	else if (!ft_strcmp(order, "ss") && a->nbval > 1 && b->nbval > 1)
+	else if (!ft_strcmp(order, "ss"))
 	{
 		ft_sa(a);
 		ft_sa(b);
 	}
-	else if (!ft_strcmp(order, "pb") && a->nbval)
+	else if (!ft_strcmp(order, "pb"))
 		ft_pa(a, b);
-	else if (!ft_strcmp(order, "pa") && b->nbval)
+	else if (!ft_strcmp(order, "pa"))
 		ft_pa(b, a);
-	else if (!ft_strcmp(order, "ra") && a->nbval > 1)
+	else if (!ft_strcmp(order, "ra"))
 		ft_ra(a);
-	else if (!ft_strcmp(order, "rb") && b->nbval > 1)
+	else if (!ft_strcmp(order, "rb"))
 		ft_ra(b);
 	else
 		return (ft_select_order2(order, a, b));

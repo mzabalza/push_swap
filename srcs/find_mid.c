@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/13 21:46:16 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/07 05:14:14 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/19 22:47:22 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 /*
 **Returns the position of the min value of a list
 */
+
 int			search_min(t_node *list)
 {
 	int i;
@@ -106,10 +107,12 @@ static int	selection_sort(int *order, int nbval)
 	i = (nbval / 2);
 	return (order[i]);
 }
+
 /*
 **Receives a list; creates an array with the list values; orders the array
 **Returns middle value
 */
+
 int			find_mid(t_node *list, int nbval)
 {
 	int *order;
@@ -118,7 +121,6 @@ int			find_mid(t_node *list, int nbval)
 
 	order = (int *)malloc(sizeof(int) * (nbval));
 	i = 0;
-	//ojo esto
 	while (i < (nbval))
 	{
 		order[i] = list->value;

@@ -6,15 +6,16 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/13 22:53:13 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/14 00:41:18 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/19 22:45:39 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_checker.h"
 
 /*
-**char c is the destiny 
+**char c is the destiny
 */
+
 void	ft_exec_p(t_stack *a, t_stack *b, char c)
 {
 	ft_pa(a, b);

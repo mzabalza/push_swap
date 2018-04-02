@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/09 20:32:34 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/14 14:22:41 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/26 14:33:07 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ void		ft_freestack(t_stack *stack)
 
 char		**ft_create_strstack(char *str)
 {
-	return (ft_strsplit(str, ' '));
+	char **av;
+
+	if (!(av = ft_strsplit(str, ' ')))
+		exit(1);
+	return (av);
 }
 
 void		ft_addnode(int value, t_node **top, t_node **bottom)
 {
 	t_node *newlist;
 
-	newlist = (t_node *)malloc(sizeof(t_node));
+	if (!(newlist = (t_node *)malloc(sizeof(t_node))))
+		exit(1);
 	newlist->value = value;
 	if ((*top) == NULL)
 	{
@@ -59,7 +64,8 @@ t_stack		*ft_newstack(void)
 	t_node	*top;
 	t_node	*bottom;
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!(stack = (t_stack *)malloc(sizeof(t_stack))))
+		exit(1);
 	top = NULL;
 	bottom = NULL;
 	stack->first = top;

@@ -6,7 +6,7 @@
 /*   By: mzabalza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/10 06:40:41 by mzabalza          #+#    #+#             */
-/*   Updated: 2018/03/07 05:17:52 by mzabalza         ###   ########.fr       */
+/*   Updated: 2018/03/20 01:16:46 by mzabalza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ void		ft_push(int value, t_stack *stack)
 {
 	t_node *newnode;
 
-	newnode = (t_node *)malloc(sizeof(t_node));
+	if (!(newnode = (t_node *)malloc(sizeof(t_node))))
+		exit(1);
 	newnode->value = value;
+	newnode->prev = NULL;
 	if (stack->first)
+	{
 		newnode->next = (stack->first);
+		(stack->first)->prev = newnode;
+		(stack->first) = newnode;
+	}
 	else
 	{
 		newnode->next = NULL;
