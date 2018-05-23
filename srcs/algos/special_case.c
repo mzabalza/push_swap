@@ -65,7 +65,7 @@ int			special_case(t_stack *a, t_stack *b)
 	int i;
 
 	if (!(orders = ft_memalloc(16)))
-		return (0);
+		exit(1);
 	ft_distribute(a, b);
 	i = 0;
 	while (i < 2)

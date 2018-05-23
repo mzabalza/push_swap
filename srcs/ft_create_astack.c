@@ -68,6 +68,7 @@ t_stack		*ft_newstack(void)
 		exit(1);
 	top = NULL;
 	bottom = NULL;
+	stack->nbval = 0;
 	stack->first = top;
 	stack->last = bottom;
 	return (stack);

@@ -14,8 +14,16 @@
 
 int		ft_checknumber(char *str)
 {
+	if (ft_strlen(str) == 0)
+		exit(1);
 	if (*str == '-' && ft_strlen(str) != 1)
 		str++;
+	if (*str == '+' && ft_strlen(str) != 1)
+		str++;
+	while (*str == '0')
+		str++;
+	if (ft_strlen(str) > 10)
+		return (0);
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
@@ -29,6 +37,8 @@ int		ft_checkinp(int ac, char **input, int i)
 {
 	intmax_t nb;
 
+	if ((i && ac == 1) || !ac)
+		exit(1);
 	while (i < ac)
 	{
 		if (!ft_checknumber(input[i]))

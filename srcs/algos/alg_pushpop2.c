@@ -100,8 +100,7 @@ int			alg_pushpop2(t_stack *a, t_stack *b)
 	if (is_ordered(a->first) || is_rordered(a->first, a))
 		return (1);
 	if (a->nbval < 7 && a->nbval > 3)
-		if ((special_case(a, b) == 0))
-			return (0);
+		special_case(a, b);
 	c = ft_create_cstack(a->first);
 	c = ft_bubble_sort(c);
 	while (a->nbval > 3)

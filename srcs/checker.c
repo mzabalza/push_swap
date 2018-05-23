@@ -16,10 +16,11 @@ static int	read_instructions(t_stack *astack, t_stack *bstack, int show)
 {
 	char	*line;
 
-	while (get_next_line(0, &line))
+	line = NULL;
+	while (get_next_line(0, &line) > 0)
 	{
-		if (!ft_select_order(line, astack, bstack))
-			return (ft_show_error());
+		if (ft_strlen(line) && !ft_select_order(line, astack, bstack))
+			ft_show_error();
 		if (show == 2)
 			ft_show_board(*astack, *bstack);
 		free(line);
@@ -37,23 +38,22 @@ int			main(int ac, char **av)
 	int		ac_one;
 
 	ac_one = 1;
-	if (ac == 1)
-		return (0);
 	if (ac == 2)
 	{
 		ac = ft_nwords(av[1], ' ');
 		av = ft_create_strstack(av[1]);
 		ac_one = 0;
 	}
-	if (ac_one && !(ft_strcmp(av[1], "-v")))
+	if (ac != 1 && ac_one && !(ft_strcmp(av[1], "-v")))
 		ac_one = 2;
 	if (!ft_checkinp(ac, av, ac_one))
-		return (ft_show_error());
+		ft_show_error();
 	astack = ft_create_astack(ac, av, ac_one);
-	bstack = ft_newstack();
 	if (!ft_check_dupl(astack->first))
-		return (ft_show_error());
-	if (!(read_instructions(astack, bstack, ac_one)))
-		return (0);
+		ft_show_error();
+	bstack = ft_newstack();
+	read_instructions(astack, bstack, ac_one);
+	if (!ac_one)
+		exit(1);
 	return (1);
 }

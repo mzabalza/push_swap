@@ -11,18 +11,22 @@
 # **************************************************************************** #
 
 #RM = /usr/bin/env rm
+
+NAME = generator
 CH_NAME = checker
 PS_NAME = push_swap
 
 LIBFT = libft/libft.a
- 
+
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -Iincludes
-#-L./libft 
+CFLAGS = -Wall -Werror -Wextra $(INCLUDES)
+#-L./libft
+INCLUDES = -Iincludes
 
 CH_SRC = srcs/checker.c\
 		srcs/ft_checkinp.c\
 		srcs/ft_create_astack.c\
+		srcs/ft_show_error.c\
 		srcs/ft_show_stack.c\
 		srcs/ft_select_order.c\
 		srcs/ft_orders.c\
@@ -37,11 +41,12 @@ CH_SRC = srcs/checker.c\
 		srcs/algos/alg_pushpop.c\
 		srcs/ft_ex_and_print.c
 
-CH_OBJ		= $(CH_SRC:.c=.o)
+CH_OBJ	= $(CH_SRC:.c=.o)
 
 PS_SRC = srcs/ft_push_swap.c\
 		srcs/ft_checkinp.c\
 		srcs/ft_create_astack.c\
+		srcs/ft_show_error.c\
 		srcs/ft_show_stack.c\
 		srcs/ft_stack_ops.c\
 		srcs/ft_stack_result.c\
@@ -63,14 +68,18 @@ PS_SRC = srcs/ft_push_swap.c\
 		srcs/quick_alg/ft_solve_3bstack.c\
 		srcs/quick_alg/ft_solve_3astack.c
 
-PS_OBJ		= $(PS_SRC:.c=.o)
+PS_OBJ	= $(PS_SRC:.c=.o)
 
-all: $(LIBFT) $(CH_NAME) $(PS_NAME) 
+HEADER = includes/ft_checker.h
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(CH_NAME) $(PS_NAME)
 
 $(LIBFT):
 	make -C libft
 
-$(CH_NAME): $(CH_OBJ)
+$(CH_NAME): $(CH_OBJ) $(HEADER)
 	$(CC) $(CFLAGS) $(CH_OBJ) $(LIBFT) -o $(CH_NAME)
 	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Checker is done !"
 
@@ -78,6 +87,9 @@ $(PS_NAME): $(PS_OBJ)
 	$(CC) $(CFLAGS) $(PS_OBJ) $(LIBFT) -o $(PS_NAME)
 	@printf '\033[32m[ ✔ ] %s\n\033[0m' "Push_swap is done !"
 
+$(CH_OBJ): $(HEADER)
+
+$(PS_OBJ): $(HEADER)
 
 clean:
 	rm -f $(CH_OBJ)
@@ -87,10 +99,10 @@ clean:
 
 fclean: clean
 	make -C libft fclean
-	rm $(PS_NAME)
-	rm $(CH_NAME)
+	rm -f $(PS_NAME)
+	rm -f $(CH_NAME)
 	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean"
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all generator
