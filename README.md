@@ -54,4 +54,4 @@ ARG="4 5 3 1"; ./push_swap $A | ./cheker $A
 ```
 The -v flag in checker Show the stacks status after each operation
 
-![checker -v](images/img 7.png)
+![img1](images/img1.png)
