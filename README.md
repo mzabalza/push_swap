@@ -44,7 +44,7 @@ make
 ```
 ./push_swap 4 5 3 1
 ```
-+ **PUSH SWAP**
++ **CHECKER**
 ```
 ./checker 4 5 3 1
 ```
