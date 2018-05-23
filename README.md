@@ -50,7 +50,7 @@ make
 ```
 + **PUSH SWAP | CHECKER**
 ```
-ARG="4 5 3 1"; ./push_swap $A | ./cheker $A
+ARG="4 5 3 1"; ./push_swap $A | ./cheker $ARG
 ```
 The -v flag in checker Show the stacks status after each operation
 
