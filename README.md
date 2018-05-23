@@ -40,21 +40,18 @@ My program uses different algorithms depending on the input size:
 ```
 make
 ```
-
-```
-PUSH SWAP
++ **PUSH SWAP**
 ```
 ./push_swap 4 5 3 1
 ```
-CHECKER
++ **PUSH SWAP**
 ```
 ./checker 4 5 3 1
 ```
-
++ **PUSH SWAP | CHECKER**
 ```
 ARG="4 5 3 1"; ./push_swap $A | ./cheker $A
 ```
-
 The -v flag in checker Show the stacks status after each operation
 
 ![checker -v](images/img 7.png)
